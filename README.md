@@ -39,8 +39,12 @@ This project is a **C# Keylogger** that captures keystrokes, stores them in a fi
 
 2. **Install .NET Framework**: Make sure the .NET runtime is installed on your system.
 
-### Code Configuration
-
-1. **Clone the repository**:
+### Using The Code
+ **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/keylogger-csharp
+```
+### Future Improvements
+-Add encryption to the log file and email transmission for better security.
+-Implement timed email sending instead of relying on keystroke count.
+-Improve error handling and SMTP configuration flexibility.
