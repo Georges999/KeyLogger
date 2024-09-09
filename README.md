@@ -29,7 +29,7 @@ This project is a **C# Keylogger** that captures keystrokes, stores them in a fi
 - `System.Runtime.InteropServices`
 - `System.Threading`
 
-## Setup Instructions
+## Setup
 
 ### Prerequisites
 
@@ -44,7 +44,10 @@ This project is a **C# Keylogger** that captures keystrokes, stores them in a fi
    ```bash
    git clone https://github.com/yourusername/keylogger-csharp
 ```
-### Future Improvements
--Add encryption to the log file and email transmission for better security.
--Implement timed email sending instead of relying on keystroke count.
--Improve error handling and SMTP configuration flexibility.
+## Future Improvements
+
+-**Add encryption to the log file and email transmission for better security.**
+
+-**Implement timed email sending instead of relying on keystroke count.**
+
+-**Improve error handling and SMTP configuration flexibility.**
