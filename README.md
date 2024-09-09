@@ -1,11 +1,46 @@
-# KeyLogger
-Keylogger program with email sending function with c#
+# Keylogger with SMTP Email Sending in C#
 
-This code can be made into an application using setup wizard extension in visual studio 2022
-Using certain techniques this application can be hidden through windows and even task manager
-Moreover the setup wizard can be made such that on every startup of the system the application automatically starts.
+## Overview
 
-Contact me if you wish to find out more about this program, its functionalities and perks.
+This project is a **C# Keylogger** that captures keystrokes, stores them in a file, and periodically sends the content of the file to an external email address using **SMTP**. The keylogger works silently in the background, capturing keyboard input and logging it to a file located in the user's **Documents** directory. Once a certain threshold is met (100 keystrokes in this example), the log file is sent via email to a configured Gmail account.
 
-Note: This repository was not made to be used with malicious intent but for educational purposes.
+> **Note**: This software is intended for educational purposes only. Use of this software in unauthorized scenarios may violate privacy laws and other regulations.
 
+## Features
+
+- **Key Capture**: Monitors and captures keystrokes in real-time.
+- **Console Output**: Displays captured keystrokes in the console.
+- **Log Storage**: Saves keystrokes to a text file (`keystrokes.txt`) in the user's **Documents** folder.
+- **Email Notification**: Sends the keystroke logs to a specified email every 100 keystrokes or at user-defined intervals.
+- **System Information**: Sends system information such as the computer's IP address, username, and timestamp with each log.
+
+## Requirements
+
+- **.NET Framework**
+- **Gmail Account** with a valid **App Password** (or SMTP server credentials).
+- **Admin Privileges** (for certain keylogging functionalities).
+  
+### Libraries/Namespaces Used
+
+- `System`
+- `System.IO`
+- `System.Net`
+- `System.Net.Mail`
+- `System.Runtime.InteropServices`
+- `System.Threading`
+
+## Setup Instructions
+
+### Prerequisites
+
+1. **Enable App Passwords on Gmail**:
+   - Go to your [Google Account Security Settings](https://myaccount.google.com/security) and enable **2-Step Verification**.
+   - Create an **App Password** for "Mail". This password will be used in the program to send emails.
+
+2. **Install .NET Framework**: Make sure the .NET runtime is installed on your system.
+
+### Code Configuration
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/keylogger-csharp
